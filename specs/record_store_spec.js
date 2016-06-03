@@ -1,5 +1,6 @@
 var Store = require("../record_store");
 var Record = require("../record");
+var Customer = require("../customer");
 var assert = require('chai').assert;
 
 describe('Store initialize test', function() {

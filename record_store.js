@@ -27,11 +27,13 @@ Store.prototype = {
   },
 
   delete: function (name) {
+    var result;
     for (var i = 0; i < this.inventory.length; i++) {
       if(this.inventory[i].name === name ) {
-        this.inventory.splice(i,1);
+         result = this.inventory.splice(i,1);
       }
     }
+    return result;
   },
 
   sell: function (name) {
