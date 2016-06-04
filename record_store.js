@@ -18,27 +18,27 @@ Store.prototype = {
     return list;
   },
 
-  addBalance: function (name) {
-    for (var i = 0; i < this.inventory.length; i++) {
-      if(this.inventory[i].name === name ) {
-        this.balance += this.inventory[i].price;
-      }
-    }
+  addBalance: function (record) {
+        this.balance += record.price;
+
   },
 
   delete: function (name) {
     var result;
     for (var i = 0; i < this.inventory.length; i++) {
-      if(this.inventory[i].name === name ) {
+      if(this.inventory[i].name === name) {
          result = this.inventory.splice(i,1);
       }
     }
     return result;
   },
 
-  sell: function (name) {
-    this.addBalance(name);
-    this.delete(name);
+  sell: function (record,customer) {
+
+    var result = this.delete(record);
+    this.addBalance(result[0]);
+    customer.inventory.push(result[0]);
+    customer.balance -= result[0].price;
   },
 
   total: function () {

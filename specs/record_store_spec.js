@@ -42,6 +42,8 @@ describe('Store methods test', function() {
     shop.add(eminem);
     shop.add(shakira);
     shop.add(britney);
+
+    wojtek = new Customer("Wojtek", 100);
   });
 
   it('Should add records to inventory', function() {
@@ -54,7 +56,7 @@ describe('Store methods test', function() {
   });
 
   it('Should add record price to balance', function() {
-    shop.addBalance("Rihanna");
+    shop.addBalance(rihanna);
     assert.equal(1010, shop.balance );
   });
 
@@ -65,12 +67,12 @@ describe('Store methods test', function() {
   });
 
   it('When sell should incrase balance', function() {
-    shop.sell("Rihanna");
+    shop.sell("Rihanna", wojtek);
     assert.equal(1010, shop.balance);
   });
 
   it('When sell should delete record from inventory', function() {
-    shop.sell("Rihanna");
+    shop.sell("Rihanna", wojtek);
     assert.deepEqual(["Artist: Eminem, Album: Marshall",
   "Artist: Shakira, Album: Wolf","Artist: Britney, Album: Lolipop"], shop.inventoryPrint());
   });
@@ -90,7 +92,7 @@ describe('Store methods test', function() {
   "Artist: Shakira, Album: Wolf","Artist: Britney, Album: Lolipop","Artist: Kid Rock, Album: Drums"], shop.inventoryPrint());
   });
 
-  it('Should dcrease balance with buy method', function() {
+  it('Should decrease balance with buy method', function() {
     shop.buy(kid_rock);
     assert.equal(990, shop.balance);
   });
